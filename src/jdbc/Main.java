@@ -1,12 +1,13 @@
 package jdbc;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
     	
+
+    	Methodes CRUD = new Methodes();
     	Scanner userInput = new Scanner(System.in);
         System.out.println("Sélectionnez la commande que vous voulez exécuter :\n"
         		+ "1 - SELECT\n"
@@ -18,16 +19,22 @@ public class Main {
         
         switch(userChoice) {
         case 1:
-        	System.out.println("Commande SELECT");
+        	CRUD.SELECT();
         	break;
         case 2:
-        	System.out.println("Commande INSERT");
+        	CRUD.INSERT();
         	break;
         case 3:
-        	System.out.println("Commande UPDATE");
+        	System.out.println("Quelle entrée voulez-vous mettre à jour ?");
+        	Scanner updateInput = new Scanner(System.in);
+        	int updateChoice = userInput.nextInt();
+        	CRUD.UPDATE(updateChoice);
         	break;
         case 4:
-        	System.out.println("Commande DELETE");
+        	System.out.println("Quelle entrée voulez-vous supprimer ?");
+        	Scanner deleteInput = new Scanner(System.in);
+        	int deleteChoice = userInput.nextInt();   	
+        	CRUD.DELETE(deleteChoice);
         	break;
         }
 
